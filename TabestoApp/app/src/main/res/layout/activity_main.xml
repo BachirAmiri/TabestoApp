@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Proceder a l&apos;ajout d&apos;un &quot;Food&quot;"
+        android:text="Ajout d&apos;un objet &quot;Food&quot;"
         android:id="@+id/textForm"
         android:layout_below="@+id/textWelcome"
         android:layout_alignParentStart="true"

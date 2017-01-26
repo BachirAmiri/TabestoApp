@@ -46,7 +46,6 @@ public class ListActivity extends AppCompatActivity {
         {
             @Override
             public void onItemClick(AdapterView<?> parent,View view , int position, long id){
-                //Toast.makeText(getBaseContext(), foods[position], Toast.LENGTH_LONG).show();
                 Intent iii = new Intent(getApplicationContext() , ProductActivity.class);
                 iii.putExtra("LIST", (Serializable) liste_food.get(position));
                 startActivity(iii);
