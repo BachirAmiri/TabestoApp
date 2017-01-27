@@ -20,10 +20,8 @@ public class ProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
-
         Intent i = getIntent();
         Food food = (Food) i.getSerializableExtra("LIST");
-
 
         TextView name = (TextView) findViewById(R.id.textName);
         TextView price = (TextView) findViewById(R.id.textPrice);
@@ -31,16 +29,8 @@ public class ProductActivity extends AppCompatActivity {
 
         name.setText(food.getName());
         price.setText(food.getPrice() + " €");
-        Toast.makeText(getBaseContext(), food.getPicture() , Toast.LENGTH_LONG).show();
-        if (food.getPicture().equals("food1")){
-            image.setImageResource(R.drawable.food1);
-        }else if (food.getPicture().equals("food2")){
-            image.setImageResource(R.drawable.food2);
-        }else if (food.getPicture().equals("food3")){
-            image.setImageResource(R.drawable.food3);
-        }else if (food.getPicture().equals("food4")){
-            image.setImageResource(R.drawable.food4);
-        }
+
+        image.setImageResource(food.getPicture());
         image.getLayoutParams().height = 250 ;
         image.getLayoutParams().width = 250 ;
     }

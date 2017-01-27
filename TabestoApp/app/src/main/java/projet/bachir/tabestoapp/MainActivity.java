@@ -3,6 +3,7 @@ package projet.bachir.tabestoapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,15 +15,15 @@ import java.io.Serializable;
 class Food implements Serializable {
     String name ;
     int price ;
-    String picture ;
+    int picture ;
 
     public Food(String name_ , int price_){
         this.name = name_ ;
         this.price = price_ ;
-        this.picture = "food1" ;
+        this.picture = 1 ;
     }
 
-    public Food(String name_ , int price_ , String picture_){
+    public Food(String name_ , int price_ , int picture_){
         this.name = name_ ;
         this.price = price_ ;
         this.picture = picture_;
@@ -35,7 +36,7 @@ class Food implements Serializable {
         return this.price ;
     }
 
-    public String getPicture(){
+    public int getPicture(){
         return picture ;
     }
 }
@@ -50,19 +51,28 @@ public class MainActivity extends AppCompatActivity {
 
         Button ajout = (Button) findViewById(R.id.buttonAdd);
         ajout.setOnClickListener(new View.OnClickListener() {
-             @Override
-        public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-            Intent i = new Intent(getApplicationContext(), ListActivity.class);
-            EditText nom = (EditText) findViewById(R.id.editText);
-            String name = nom.getText().toString();
+                Intent i = new Intent(getApplicationContext(), ListActivity.class);
+                EditText nom = (EditText) findViewById(R.id.editText);
+                String name = nom.getText().toString();
+                if (TextUtils.isEmpty(name)) {
+                    nom.setError("Champ nom vide");
+                    return;
+                }
 
-            EditText prix = (EditText) findViewById(R.id.editText2);
-            int price = Integer.parseInt( (prix.getText().toString()) );
-            Food newFood = new Food (name,price);
+                EditText prix = (EditText) findViewById(R.id.editText2);
 
-            i.putExtra("liste", newFood);
-            startActivity(i);
+                if (TextUtils.isEmpty(prix.getText().toString())) {
+                    prix.setError("Champ prix vide");
+                    return;
+                }
+                int price = Integer.parseInt((prix.getText().toString()));
+                Food newFood = new Food(name, price, R.drawable.food1);
+
+                i.putExtra("liste", newFood);
+                startActivity(i);
 
             }
         });
